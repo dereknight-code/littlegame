@@ -9,7 +9,8 @@ const state = {
   total: 0,
   streak: 0,
   startTime: Date.now(),
-  answered: false
+  answered: false,
+  roundComplete: false
 };
 
 const els = {
@@ -70,6 +71,8 @@ function renderQuestion() {
 
   state.selected.clear();
   state.answered = false;
+  state.roundComplete = false;
+  els.modalClose.textContent = "知道了";
   hideModal();
 
   const choiceIds = shuffle(q.choices);
@@ -154,7 +157,7 @@ async function submitAnswer() {
     window.MathJax.typeset();
   }
 
-  els.btnSubmit.textContent = state.index === questionLoader.total - 1 ? "完成" : "下一題";
+  els.btnSubmit.textContent = "送出作答";
 }
 
 async function nextQuestion() {
@@ -165,12 +168,27 @@ async function nextQuestion() {
     currentQuestion = await questionLoader.next();
     renderQuestion();
   } else {
+    const wrongCount = Math.max(0, state.total - state.correct);
     showModal("", `
-      <strong>本輪完成</strong><br />
-      正確率：${state.correct} / ${state.total}
+      <div class="scoreboard final-board">
+        <div>
+          <div class="score-title">本輪完成</div>
+          <div class="score-meta">正確率：<span class="score-meta-value">${state.correct} / ${state.total}</span></div>
+        </div>
+        <div class="score-cells">
+          <div class="score-cell">
+            <div class="score-num correct">${state.correct}</div>
+            <div class="score-label">正確</div>
+          </div>
+          <div class="score-cell">
+            <div class="score-num wrong">${wrongCount}</div>
+            <div class="score-label">錯誤</div>
+          </div>
+        </div>
+      </div>
     `);
-    els.btnSubmit.disabled = true;
-    els.btnClear.disabled = true;
+    state.roundComplete = true;
+    els.modalClose.textContent = "重開一局";
   }
 }
 
@@ -228,10 +246,34 @@ function fitResultTitle() {
 }
 
 async function advanceFromModal() {
+  if (state.roundComplete) {
+    await restartRound();
+    return;
+  }
   hideModal();
-  if (state.answered && state.index < questionLoader.total - 1) {
+  if (state.answered) {
     await nextQuestion();
   }
+}
+
+async function restartRound() {
+  hideModal();
+  state.index = 0;
+  state.answered = false;
+  state.roundComplete = false;
+  state.selected.clear();
+  state.startTime = Date.now();
+  state.correct = 0;
+  state.total = 0;
+  state.streak = 0;
+  saveStats();
+  updateStatsUI();
+  els.btnSubmit.disabled = false;
+  els.btnSubmit.textContent = "送出作答";
+  els.modalClose.textContent = "知道了";
+  questionLoader.resetRound();
+  currentQuestion = await questionLoader.next();
+  renderQuestion();
 }
 
 els.btnClear.addEventListener("click", clearSelection);
@@ -245,6 +287,8 @@ async function init() {
   state.correct = 0;
   state.total = 0;
   state.streak = 0;
+  state.roundComplete = false;
+  els.modalClose.textContent = "知道了";
   updateStatsUI();
   try {
     const indexData = await loadIndex();

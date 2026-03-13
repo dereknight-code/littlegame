@@ -1,19 +1,279 @@
-﻿{
+{
   "properties": [
-    { "id": "p1", "label": "一元一次方程式的移項等式性質", "group": "代數", "short": "移項" },
-    { "id": "p2", "label": "平方差公式：\\(a^2 - b^2 = (a-b)(a+b)\\)", "group": "代數", "short": "平方差" },
-    { "id": "p3", "label": "畢氏定理：\\(a^2 + b^2 = c^2\\)", "group": "幾何", "short": "畢氏" },
-    { "id": "p4", "label": "等比數列通項：\\(a_n = a_1 r^{n-1}\\)", "group": "數列", "short": "等比通項" },
-    { "id": "p5", "label": "等差數列通項：\\(a_n = a_1 + (n-1)d\\)", "group": "數列", "short": "等差通項" },
-    { "id": "p6", "label": "內錯角相等（平行線）", "group": "幾何", "short": "內錯角" },
-    { "id": "p7", "label": "整式乘法分配律", "group": "代數", "short": "分配律" },
-    { "id": "p8", "label": "解比例式：交叉相乘", "group": "代數", "short": "比例" }
+    {
+      "id": "p1",
+      "label": "一元一次方程式的移項等式性質",
+      "group": "代數",
+      "short": "移項"
+    },
+    {
+      "id": "p2",
+      "label": "平方差公式：\\(a^2 - b^2 = (a-b)(a+b)\\)",
+      "group": "代數",
+      "short": "平方差"
+    },
+    {
+      "id": "p3",
+      "label": "畢氏定理：\\(a^2 + b^2 = c^2\\)",
+      "group": "幾何",
+      "short": "畢氏"
+    },
+    {
+      "id": "p4",
+      "label": "等比數列通項：\\(a_n = a_1 r^{n-1}\\)",
+      "group": "數列",
+      "short": "等比通項"
+    },
+    {
+      "id": "p5",
+      "label": "等差數列通項：\\(a_n = a_1 + (n-1)d\\)",
+      "group": "數列",
+      "short": "等差通項"
+    },
+    {
+      "id": "p6",
+      "label": "內錯角相等（平行線）",
+      "group": "幾何",
+      "short": "內錯角"
+    },
+    {
+      "id": "p7",
+      "label": "整式乘法分配律",
+      "group": "代數",
+      "short": "分配律"
+    },
+    {
+      "id": "p8",
+      "label": "解比例式：交叉相乘",
+      "group": "代數",
+      "short": "比例"
+    }
   ],
   "questionIndex": [
-    { "id": "q1", "file": "questions/q1.json", "tags": ["代數", "一次方程式"], "difficulty": 1 },
-    { "id": "q2", "file": "questions/q2.json", "tags": ["幾何", "直角三角形"], "difficulty": 1 },
-    { "id": "q3", "file": "questions/q3.json", "tags": ["數列", "等比"], "difficulty": 2 },
-    { "id": "q4", "file": "questions/q4.json", "tags": ["代數", "公式"], "difficulty": 2 },
-    { "id": "q5", "file": "questions/q5.json", "tags": ["幾何", "平行線"], "difficulty": 2 }
+    {
+      "id": "q1",
+      "file": "questions/q1.json",
+      "tags": [
+        "代數",
+        "一次方程式"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q2",
+      "file": "questions/q2.json",
+      "tags": [
+        "幾何",
+        "直角三角形"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "file": "questions/q3.json",
+      "tags": [
+        "數列",
+        "等比"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q4",
+      "file": "questions/q4.json",
+      "tags": [
+        "代數",
+        "公式"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q5",
+      "file": "questions/q5.json",
+      "tags": [
+        "幾何",
+        "平行線"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q6",
+      "file": "questions/q6.json",
+      "tags": [
+        "代數",
+        "一次方程式"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q7",
+      "file": "questions/q7.json",
+      "tags": [
+        "代數",
+        "一次方程式"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q8",
+      "file": "questions/q8.json",
+      "tags": [
+        "代數",
+        "比例"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q9",
+      "file": "questions/q9.json",
+      "tags": [
+        "代數",
+        "比例"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q10",
+      "file": "questions/q10.json",
+      "tags": [
+        "代數",
+        "公式"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q11",
+      "file": "questions/q11.json",
+      "tags": [
+        "幾何",
+        "直角三角形"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q12",
+      "file": "questions/q12.json",
+      "tags": [
+        "數列",
+        "等比"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q13",
+      "file": "questions/q13.json",
+      "tags": [
+        "數列",
+        "等差"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q14",
+      "file": "questions/q14.json",
+      "tags": [
+        "幾何",
+        "平行線"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q15",
+      "file": "questions/q15.json",
+      "tags": [
+        "代數",
+        "分配律"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q16",
+      "file": "questions/q16.json",
+      "tags": [
+        "代數",
+        "一次方程式"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q17",
+      "file": "questions/q17.json",
+      "tags": [
+        "數列",
+        "等差"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "file": "questions/q18.json",
+      "tags": [
+        "數列",
+        "等比"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q19",
+      "file": "questions/q19.json",
+      "tags": [
+        "代數",
+        "比例"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q20",
+      "file": "questions/q20.json",
+      "tags": [
+        "代數",
+        "公式"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q21",
+      "file": "questions/q21.json",
+      "tags": [
+        "幾何",
+        "直角三角形"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q22",
+      "file": "questions/q22.json",
+      "tags": [
+        "幾何",
+        "平行線"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q23",
+      "file": "questions/q23.json",
+      "tags": [
+        "代數",
+        "分配律"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q24",
+      "file": "questions/q24.json",
+      "tags": [
+        "數列",
+        "等比"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q25",
+      "file": "questions/q25.json",
+      "tags": [
+        "數列",
+        "等差"
+      ],
+      "difficulty": 2
+    }
   ]
 }

@@ -23,17 +23,59 @@ async function loadQuestionByFile(file) {
 }
 
 function createQuestionLoader(indexData) {
-  const index = indexData.questionIndex.slice();
+  const all = indexData.questionIndex.slice();
+  const usedIds = new Set();
+  const roundSize = 5;
+  let round = [];
   let cursor = 0;
 
-  return {
-    total: index.length,
+  function shuffle(array) {
+    const copy = array.slice();
+    for (let i = copy.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function buildRound(loader) {
+    const remaining = all.filter(entry => !usedIds.has(entry.id));
+    let selection = shuffle(remaining);
+
+    if (selection.length >= roundSize) {
+      selection = selection.slice(0, roundSize);
+    } else {
+      const needed = roundSize - selection.length;
+      usedIds.clear();
+      let pool = all.filter(entry => !selection.some(pick => pick.id === entry.id));
+      pool = shuffle(pool);
+      while (selection.length < roundSize && pool.length) {
+        selection.push(pool.shift());
+      }
+      while (selection.length < roundSize && all.length) {
+        selection.push(shuffle(all)[0]);
+      }
+    }
+
+    round = selection;
+    cursor = 0;
+    if (loader) {
+      loader.total = round.length;
+    }
+    round.forEach(entry => usedIds.add(entry.id));
+  }
+
+  const loader = {
+    total: 0,
     next: async () => {
-      if (cursor >= index.length) return null;
-      const entry = index[cursor];
+      if (cursor >= round.length) return null;
+      const entry = round[cursor];
       cursor += 1;
       return loadQuestionByFile(entry.file);
     },
-    reset: () => { cursor = 0; }
+    resetRound: () => buildRound(loader)
   };
+
+  buildRound(loader);
+  return loader;
 }
